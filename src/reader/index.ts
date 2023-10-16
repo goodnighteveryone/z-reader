@@ -135,6 +135,10 @@ class ReaderDriver {
         return './driver/qidian';
       case '笔趣阁':
         return './driver/biquge';
+      case '番茄':
+        return './driver/fanqie';
+      case '夜下书阁':
+        return './driver/yexiashuge';
       default:
         return './driver/qidian';
     }

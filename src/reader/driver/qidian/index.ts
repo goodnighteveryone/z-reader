@@ -20,6 +20,7 @@ class ReaderDriver implements ReaderDriverImplements {
           $('.book-li').each(function (i: number, elem: any) {
             const title = $(elem).find('.book-title').text();
             const author = $(elem).find('.book-author').text().trim();
+            //@ts-ignore
             const bookIdMatch = $(elem).find('.book-layout').attr().href.match('chapter/(\\d+).');
             if (bookIdMatch) {
               result.push(

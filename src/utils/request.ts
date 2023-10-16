@@ -12,11 +12,17 @@ interface cookiesConfig {
 class Requset {
   cookieJar: tough.CookieJar;
   agent: Agents | undefined;
+  headers: Record<string, string>;
 
   constructor() {
     this.cookieJar = new tough.CookieJar();
     // this.setAgent('http://127.0.0.1:8888');
     this.reLoadCookie();
+    this.headers = {
+      // 'User-Agent':
+      //   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Edg/117.0.2045.60'
+      'User-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW 64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 QIHU 360SE'
+    };
   }
 
   setAgent(proxy: string) {
@@ -52,6 +58,7 @@ class Requset {
             url: options
           }
         : options;
+    requestOptions.headers = { ...this.headers, ...requestOptions.headers };
     const res = await got({
       ...requestOptions,
       cookieJar: this.cookieJar,
